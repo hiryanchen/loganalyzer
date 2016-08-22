@@ -1,0 +1,34 @@
+{
+  "name": "Loganalyzer",
+  "version": "0.1.0",
+  "description": "A Simple Log Analyzer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hiryanchen/loganalyzer.git"
+  },
+  "keywords": [
+    "Log",
+    "Analyzer",
+    "Log Analyzer"
+  ],
+  "author": "Ryan Chen",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/hiryanchen/loganalyzer/issues"
+  },
+  "homepage": "https://github.com/hiryanchen/loganalyzer",
+  "scripts": {
+    "build": "java -jar ./node_modules/google-closure-compiler/compiler.jar --js `find ./src/**/*.js` --js_output_file dist/logAnalyzer_test.js",
+    "test": "node dist/logAnalyzer_test.js"
+  },
+  "dependencies": {
+    "es6-promise": "^3.2.1",
+    "google-closure-compiler": "^20160713.2.0",
+    "gulp-util": "^3.0.7"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-uglify": "^2.0.0",
+    "gulp": "^3.9.1"
+  }
+}
