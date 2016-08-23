@@ -1,7 +1,7 @@
 const colors = require('colors');
 
-const FileReader = require('./src/js/fileReader');
-const LogAnalyzer = require('./src/js/logAnalyzer');
+const fileReader = require('./src/js/fileReader');
+const logAnalyzer = require('./src/js/logAnalyzer');
 
 //////////////////////////////////////////////////////////////
 
