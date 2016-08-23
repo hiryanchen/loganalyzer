@@ -1,5 +1,30 @@
+const colors = require('colors');
+
 const FileReader = require('./src/js/fileReader');
-const LogAnalyzer = reuiqre('./src/js/logAnalyzer');
+const LogAnalyzer = require('./src/js/logAnalyzer');
+
+//////////////////////////////////////////////////////////////
+
+colorsFnMap = {
+  'red'    : colors.red,
+  'green'  : colors.green,
+  'yellow' : colors.yellow,
+  'blue'   : colors.blue
+};
+
+//////////////////////////////////////////////////////////////
+
+const lineMatchHandler = (extractedInfo) => {
+  let output = colors.grey(extractedInfo.lineNumber + ':');
+  extractedInfo.fields.forEach((field) => {
+    const colorFn = colorsFnMap[field.color];
+    if (colorFn === undefined) {
+      colorFn = colors.white;
+    }
+    output += ' ' + colorFn(field.value);
+  });
+  console.log(output);
+};
 
 module.exports = {
   initialize : function() {
