@@ -6,6 +6,7 @@ This is a general log analysis tool that helps anyone to take an easier approach
 
 The core of the log analysis tool revolves around a configuration file that users can customize.
 
+<pre>
 {
   "debug": "Set to true for debug output",
   "filters": [{
@@ -26,6 +27,7 @@ The core of the log analysis tool revolves around a configuration file that user
     ...
   }]
 }
+</pre>
 
 Please see samples/configs for actual examples
 
