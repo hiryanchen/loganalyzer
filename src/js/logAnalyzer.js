@@ -1,3 +1,6 @@
+// goog.provide('LogAnalyzer');
+
+
 /**
  * Log Analyzer
  */
@@ -13,27 +16,51 @@ LogAnalyzer = class {
     this.debug_ = config.debug;
 
     /**
-     * @prviate {!Array<Object>}
+     * @private {!Array<Object>}
      */
     this.filters_ = config.filters;
   }
 
   /**
    * @param {string} input
-   * @param {!Function} lineHandler
-   * @return {Object}
+   * @param {!Function(Object)} lineMatchHandler
    */
-  analyze(input, lineHandler) {
+  analyze(input, lineMatchHandler) {
     const lines = input.split('\n');
-    for (line of lines) {
-      for (filter of this.filters_) {
-        const re = new RegExp(filter.pattern, 'i');
-        const found = line.match(re);
+    for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
+      const line = lines[lineNumber];
+      for (const filter of this.filters_) {
+        const found = line.match(new RegExp(filter.pattern, 'i'));
         if (found) {
-          lineHandler(line);
+          const lineResult = {
+            lineNumber : lineNumber + 1,
+            fields : []
+          };
+          for (let fieldIndex = 0; fieldIndex < filter.fields.length;
+              fieldIndex++) {
+            const newField = this.clone_(filter.fields[fieldIndex]);
+            newField.value = found[fieldIndex + 1];
+            lineResult.fields.push(newField);
+          }
+          lineMatchHandler(lineResult);
+          // Don't confuse multiple filters matching a single line now.
+          break;
         }
       }
     }
+  }
+
+  /**
+   * Clones a JavaScript object.
+   * @param {Object} obj
+   */
+  clone_(obj) {
+    if (null == obj || "object" != typeof obj) return obj;
+    const copy = obj.constructor();
+    for (const attr in obj) {
+        if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+    }
+    return copy;
   }
 }
 

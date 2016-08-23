@@ -19,10 +19,12 @@
   "homepage": "https://github.com/hiryanchen/loganalyzer",
   "scripts": {
     "build": "java -jar ./node_modules/google-closure-compiler/compiler.jar --js `find ./src/**/*.js` --js_output_file dist/logAnalyzer_test.js",
-    "test": "node dist/logAnalyzer_test.js"
+    "test2": "node dist/log_analyzer_test.min.js",
+    "test": "node src/js/main.js",
+    "all": "gulp; npm test"
   },
   "dependencies": {
-    "es6-promise": "^3.2.1",
+    "colors": "^1.1.2",
     "google-closure-compiler": "^20160713.2.0",
     "gulp-util": "^3.0.7"
   },

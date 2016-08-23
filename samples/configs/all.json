@@ -1,0 +1,11 @@
+{
+  "debug": true,
+  "description": "Filter that catches everything",
+  "filters": [{
+    "pattern": "(.+)",
+    "fields": [{
+      "name": "line",
+      "color": "green"
+    }]
+  }]
+}

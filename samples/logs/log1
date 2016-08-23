@@ -1,0 +1,3 @@
+0:00 [ModuleFoo] Start - extra messages
+0:05 [ModuleBar] Error 007 - extra messages
+0:10 [ModuleFoo] End - extra messages

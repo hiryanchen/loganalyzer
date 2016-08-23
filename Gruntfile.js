@@ -6,13 +6,16 @@ module.exports = function(grunt) {
     'closure-compiler': {
       my_target: {
         files: {
-          'dest/output.min.js': ['src/js/**/*.js']
+          'dist/log_analyzer_test.min.js': ['src/js/**/*.js']
         },
         options: {
           compilation_level: 'SIMPLE',
-          language_in: 'ECMASCRIPT5_STRICT',
-          create_source_map: 'dest/output.min.js.map',
-          output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=output.min.js.map'
+          warning_level: 'VERBOSE',
+          language_in: 'ECMASCRIPT6_STRICT',
+          language_out: 'ECMASCRIPT5_STRICT',
+          // create_source_map: 'dist/log_analyzer_test.min.js.map',
+          // output_wrapper: '(function(){\n%output%\n}).call(this)\n//# sourceMappingURL=log_analyzer_test.min.js.map'
+          output_wrapper: '(function(){\n%output%\n}).call(this)'
         }
       }
     }

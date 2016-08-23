@@ -4,7 +4,7 @@
 var gulp  = require('gulp'),
     gutil = require('gulp-util');
 
-var Promise = require('es6-promise').Promise;
+// var Promise = require('es6-promise').Promise;
 var closureCompiler = require('google-closure-compiler').gulp();
  
 gulp.task('default', function () {
@@ -14,8 +14,10 @@ gulp.task('default', function () {
           warning_level: 'VERBOSE',
           language_in: 'ECMASCRIPT6_STRICT',
           language_out: 'ECMASCRIPT5_STRICT',
+          // process_common_js_modules: true,
+          // externs: '../node.js-closure-compiler-externs/fs.js',
           output_wrapper: '(function(){\n%output%\n}).call(this)',
-          js_output_file: 'output.min.js'
+          js_output_file: 'log_analyzer_test.min.js'
         })).on('error', gutil.log)
-      .pipe(gulp.dest('./dist/js'));
+      .pipe(gulp.dest('./dist/'));
 });

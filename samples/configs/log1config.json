@@ -1,0 +1,17 @@
+{
+  "debug": true,
+  "description": "Sample Log 1 filter",
+  "filters": [{
+    "pattern": "(\\d+:\\d+) \\[(.+)\\] Error (\\d+)",
+    "fields": [{
+      "name": "time",
+      "color": "yellow"
+    }, {
+      "name": "module",
+      "color": "green"
+    }, {
+      "name": "code",
+      "color": "red"
+    }]
+  }]
+}
