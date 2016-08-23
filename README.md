@@ -29,12 +29,12 @@ The core of the log analysis tool revolves around a configuration file that user
 }
 </pre>
 
-Please see samples/configs for actual examples
+Please see [samples/configs](https://github.com/hiryanchen/loganalyzer/tree/master/samples/configs) for actual examples
 
 When running on a single log file:
 
-node main.js {config_file_path} {log_file_path}
+`node main.js {config_file_path} {log_file_path}`
 
 When running on a pipe stream, for example, a logcat from the Android Debug Bride (ADB logcat):
 
-{stream input. i.e. adb logcat} | node main.js {config_file_path}
+`{stream input. i.e. adb logcat} | node main.js {config_file_path}`
