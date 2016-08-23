@@ -1,13 +1,9 @@
 // goog.provide('LogAnalyzer');
 
 
-/**
- * Log Analyzer
- */
+/** Log Analyzer */
 LogAnalyzer = class {
-  /**
-   * @param {Object} config LogAnalyzer configuration file
-   */
+  /** @param {Object} config LogAnalyzer configuration file */
   constructor(config) {
     /**
      * Whether we are in debug mode.
@@ -63,10 +59,3 @@ LogAnalyzer = class {
     return copy;
   }
 }
-
-
-/** @private @const */
-LogAnalyzer.ALL_FILTER_ = {
-  pattern: '',
-  description: 'Filter that catches everything'
-};

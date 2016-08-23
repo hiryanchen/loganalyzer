@@ -1,7 +1,7 @@
 {
-  "name": "Loganalyzer",
-  "version": "0.1.0",
-  "description": "A Simple Log Analyzer",
+  "name": "loganalyzer",
+  "version": "0.1.2",
+  "description": "A simple log analyzer supporting multiple filters and UI.",
   "repository": {
     "type": "git",
     "url": "https://github.com/hiryanchen/loganalyzer.git"
@@ -17,6 +17,7 @@
     "url": "https://github.com/hiryanchen/loganalyzer/issues"
   },
   "homepage": "https://github.com/hiryanchen/loganalyzer",
+  "main": "index.js",
   "scripts": {
     "build": "java -jar ./node_modules/google-closure-compiler/compiler.jar --js `find ./src/**/*.js` --js_output_file dist/logAnalyzer_test.js",
     "test2": "node dist/log_analyzer_test.min.js",
