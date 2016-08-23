@@ -32,24 +32,35 @@ const lineMatchHandler = (extractedInfo) => {
 };
 
 module.exports = {
-  initialize : function() {
-    if (process.argv.length < 4) {
+  initialize : () => {
+    if (process.argv.length <3) {
       console.log(
           colors.red('Usage: node loganalyzer.js <config_file_path> <log_file_path>'));
+          colors.red('       stdin | node loganalyzer.js <config_file_path>');
     } else {
-      process.argv.forEach((val, index, array) => {
-        if (index == 2) {
-          configPath = val;
-        } else if (index == 3) {
-          filePath = val;
-        }
-      });
-
+      // Create Log Analyzer based on config
+      const configPath = process.argv[2];
       new FileReader(configPath, configContent => {
-        new FileReader(filePath, content => {
-          const la = new LogAnalyzer(JSON.parse(configContent));
-          la.analyze(content, lineMatchHandler);
-        });
+        console.log(colors.green(
+            '___Successfully loaded configuration and creating analyzer...'));
+        module.exports.onLogAnalyzerReady(
+            new LogAnalyzer(JSON.parse(configContent)), process);
+      });
+    }
+  },
+
+  onLogAnalyzerReady : (logAnalyzer, process) => {
+    // Check whether is stream or file
+    if (process.argv.length === 3) {
+       process.stdin.on('data', function (chunk) {
+          logAnalyzer.analyze(chunk.toString(), lineMatchHandler);
+      });
+    } else {
+      filePath = process.argv[3];
+      new FileReader(filePath, content => {
+        console.log(colors.green(
+            '___Successfully loaded log file and analyzing...'));
+        logAnalyzer.analyze(content, lineMatchHandler);
       });
     }
   }

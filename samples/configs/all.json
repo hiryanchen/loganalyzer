@@ -5,7 +5,7 @@
     "pattern": "(.+)",
     "fields": [{
       "name": "line",
-      "color": "green"
+      "color": "white"
     }]
   }]
 }
