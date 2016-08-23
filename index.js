@@ -35,13 +35,13 @@ module.exports = {
   initialize : function() {
     if (process.argv.length < 4) {
       console.log(
-          colors.red('Usage: node main.js <log_file_path> <config_file_path>'));
+          colors.red('Usage: node loganalyzer.js <config_file_path> <log_file_path>'));
     } else {
       process.argv.forEach((val, index, array) => {
         if (index == 2) {
-          filePath = val;
-        } else if (index == 3) {
           configPath = val;
+        } else if (index == 3) {
+          filePath = val;
         }
       });
 
