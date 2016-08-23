@@ -58,8 +58,6 @@ if (process.argv.length < 4) {
     }
   });
 
-  var obj = JSON.parse(fs.readFileSync("package.json", 'utf8'));
-
   new FileReader(configPath, configContent => {
     new FileReader(filePath, content => {
       const la = new LogAnalyzer(JSON.parse(configContent));
