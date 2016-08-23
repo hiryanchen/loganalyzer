@@ -9,7 +9,12 @@ colorsFnMap = {
   'red'    : colors.red,
   'green'  : colors.green,
   'yellow' : colors.yellow,
-  'blue'   : colors.blue
+  'blue'   : colors.blue,
+  'magenta': colors.magenta,
+  'cyan'   : colors.cyan,
+  'white'  : colors.white,
+  'gray'   : colors.gray,
+  'grey'   : colors.grey
 };
 
 //////////////////////////////////////////////////////////////

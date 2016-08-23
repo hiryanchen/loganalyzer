@@ -21,7 +21,7 @@
   "scripts": {
     "build": "java -jar ./node_modules/google-closure-compiler/compiler.jar --js `find ./src/**/*.js` --js_output_file dist/logAnalyzer_test.js",
     "test2": "node dist/log_analyzer_test.min.js",
-    "test": "node src/js/main.js samples/logs/log1 samples/configs/log1config.json",
+    "test": "node demo.js samples/logs/log1 samples/configs/log1config.json",
     "all": "gulp; npm test"
   },
   "dependencies": {
