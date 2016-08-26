@@ -1,6 +1,6 @@
 {
   "name": "loganalyzer",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A simple log analyzer supporting multiple filters and UI.",
   "repository": {
     "type": "git",
