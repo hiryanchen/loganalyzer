@@ -11,6 +11,9 @@ LogAnalyzer = class {
      */
     this.debug_ = config.debug;
 
+    /** @private @const {boolean} */
+    this.showLineNumbers_ = config.showLineNumbers;
+
     /**
      * @private {!Array<Object>}
      */
@@ -29,7 +32,7 @@ LogAnalyzer = class {
         const found = line.match(new RegExp(filter.pattern, 'i'));
         if (found) {
           const lineResult = {
-            lineNumber : lineNumber + 1,
+            lineNumber : this.showLineNumbers_ ? lineNumber + 1 : undefined,
             fields : []
           };
           for (let fieldIndex = 0; fieldIndex < filter.fields.length;

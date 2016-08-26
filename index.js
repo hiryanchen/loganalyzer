@@ -20,7 +20,8 @@ colorsFnMap = {
 //////////////////////////////////////////////////////////////
 
 const lineMatchHandler = (extractedInfo) => {
-  let output = colors.grey(extractedInfo.lineNumber + ':');
+  let output = extractedInfo.lineNumber !== undefined ?
+      colors.grey(extractedInfo.lineNumber + ':') : '';
   extractedInfo.fields.forEach((field) => {
     const colorFn = colorsFnMap[field.color];
     if (colorFn === undefined) {
@@ -28,6 +29,7 @@ const lineMatchHandler = (extractedInfo) => {
     }
     output += ' ' + colorFn(field.value);
   });
+  // console.log(extractedInfo);
   console.log(output);
 };
 
