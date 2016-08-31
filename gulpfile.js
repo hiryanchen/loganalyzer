@@ -4,7 +4,6 @@
 var gulp  = require('gulp'),
     gutil = require('gulp-util');
 
-// var Promise = require('es6-promise').Promise;
 var closureCompiler = require('google-closure-compiler').gulp();
  
 gulp.task('default', function () {
