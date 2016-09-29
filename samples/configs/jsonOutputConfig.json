@@ -1,0 +1,29 @@
+{
+  "jsonOutput": true,
+  "description": "JSON output filter",
+  "filters": [{
+    "pattern": "(\\d+:\\d+) \\[(.+)\\] Error (\\d+)",
+    "fields": [{
+      "name": "time",
+      "color": "yellow"
+    }, {
+      "name": "module",
+      "color": "green"
+    }, {
+      "name": "code",
+      "color": "red"
+    }]
+  }, {
+    "pattern": "(\\d+:\\d+) \\[(.+)\\] (.+)",
+    "fields": [{
+      "name": "time",
+      "color": "yellow"
+    }, {
+      "name": "module",
+      "color": "green"
+    }, {
+      "name": "message",
+      "color": "yellow"
+    }]
+  }]
+}

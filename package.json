@@ -20,7 +20,8 @@
   "main": "index.js",
   "scripts": {
     "build": "java -jar ./node_modules/google-closure-compiler/compiler.jar --js `find ./src/**/*.js` --js_output_file dist/logAnalyzer_test.js",
-    "test": "node loganalyzer.js samples/configs/log1config.json samples/logs/log1 ",
+    "test": "node loganalyzer.js samples/configs/log1config.json samples/logs/log1",
+    "jsonoutput": "node loganalyzer.js samples/configs/jsonOutputConfig.json samples/logs/log1",
     "all": "gulp; npm test"
   },
   "dependencies": {

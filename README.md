@@ -9,6 +9,7 @@ The core of the log analysis tool revolves around a configuration file that user
 ```javascript
 {
   "debug": "Set to true for debug output",
+  "jsonOutput": "true",
   "filters": [{
     "pattern": "Regular expression matching each line, with brackets capturing interested fields",
     "desc": "Description of this particular filter" 

@@ -19,6 +19,11 @@ colorsFnMap = {
 
 //////////////////////////////////////////////////////////////
 
+/**
+ * A line matcher that takes the extracted information json and outputs the
+ * the result into the console.
+ * @param {Object} extractedInfo
+ */
 const lineMatchHandler = (extractedInfo) => {
   let output = extractedInfo.lineNumber !== undefined ?
       colors.grey(extractedInfo.lineNumber + ':') : '';
@@ -29,9 +34,10 @@ const lineMatchHandler = (extractedInfo) => {
     }
     output += ' ' + colorFn(field.value);
   });
-  // console.log(extractedInfo);
   console.log(output);
 };
+
+let configJson = {};
 
 module.exports = {
   initialize : () => {
@@ -43,10 +49,16 @@ module.exports = {
       // Create Log Analyzer based on config
       const configPath = process.argv[2];
       new FileReader(configPath, configContent => {
-        console.log(colors.green(
-            '___Successfully loaded configuration and creating analyzer...'));
-        module.exports.onLogAnalyzerReady(
-            new LogAnalyzer(JSON.parse(configContent)), process);
+        try {
+          configJson = JSON.parse(configContent);
+        } catch (e) {
+          console.log(colors.red('Invalid config JSON!') + e);
+        }
+        if (configJson.debug) {
+          console.log(colors.green(
+              '___Successfully loaded configuration and creating analyzer...'));
+        }
+        module.exports.onLogAnalyzerReady(new LogAnalyzer(configJson), process);
       });
     }
   },
@@ -60,8 +72,10 @@ module.exports = {
     } else {
       filePath = process.argv[3];
       new FileReader(filePath, content => {
-        console.log(colors.green(
-            '___Successfully loaded log file and analyzing...'));
+        if (configJson.debug) {
+          console.log(colors.green(
+              '___Successfully loaded log file and analyzing...'));
+        }
         logAnalyzer.analyze(content, lineMatchHandler);
       });
     }

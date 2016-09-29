@@ -6,10 +6,10 @@ LogAnalyzer = class {
   /** @param {Object} config LogAnalyzer configuration file */
   constructor(config) {
     /**
-     * Whether we are in debug mode.
+     * Whether we want the output to be JSON.
      * @private @const {boolean}
      */
-    this.debug_ = config.debug;
+    this.jsonOutput_ = config.jsonOutput;
 
     /** @private @const {boolean} */
     this.showLineNumbers_ = config.showLineNumbers;
@@ -17,15 +17,23 @@ LogAnalyzer = class {
     /**
      * @private {!Array<Object>}
      */
-    this.filters_ = config.filters;
+    this.filters_ = config.filters || [];
+
+    /**
+     * The final JSON string containing all filtered results
+     * @prviate {string}
+     */
+    this.finalJsonStr_ = '';
   }
 
   /**
    * @param {string} input
    * @param {!Function(Object)} lineMatchHandler
+   * @param {string} Final JSON string.
    */
   analyze(input, lineMatchHandler) {
     const lines = input.split('\n');
+    this.finalJsonStr_ = '{[';
     for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
       const line = lines[lineNumber];
       for (const filter of this.filters_) {
@@ -41,11 +49,22 @@ LogAnalyzer = class {
             newField.value = found[fieldIndex + 1];
             lineResult.fields.push(newField);
           }
-          lineMatchHandler(lineResult);
+          if (this.finalJsonStr_[this.finalJsonStr_.length-1] == '}') {
+            // If the final string contains previous matches, add a comma.
+            this.finalJsonStr_ += ',';
+          }
+          this.finalJsonStr_ += JSON.stringify(lineResult);
+          if (!this.jsonOutput_) {
+            lineMatchHandler(lineResult);
+          }
           // Don't confuse multiple filters matching a single line now.
           break;
         }
       }
+    }
+    this.finalJsonStr_ += ']}';
+    if (this.jsonOutput_) {
+      console.log(this.finalJsonStr_);
     }
   }
 
