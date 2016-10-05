@@ -33,7 +33,7 @@ LogAnalyzer = class {
    */
   analyze(input, lineMatchHandler) {
     const lines = input.split('\n');
-    this.finalJsonStr_ = '{[';
+    this.finalJsonStr_ = '[';
     for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
       const line = lines[lineNumber];
       for (const filter of this.filters_) {
@@ -62,7 +62,7 @@ LogAnalyzer = class {
         }
       }
     }
-    this.finalJsonStr_ += ']}';
+    this.finalJsonStr_ += ']';
     if (this.jsonOutput_) {
       console.log(this.finalJsonStr_);
     }
